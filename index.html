@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Little Learners Tutoring</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- CSS VARIABLES FOR THEME --- */
+        :root {
+            --primary-pink: #ffb6c1;
+            --light-pink: #ffe4e1;
+            --dark-pink: #ff6b81;
+            --text-main: #5a4b4d;
+            --white: #ffffff;
+            --card-shadow: 0 8px 20px rgba(255, 182, 193, 0.4);
+        }
+
+        /* --- GLOBAL STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--light-pink);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Fredoka', sans-serif;
+            color: var(--dark-pink);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--dark-pink);
+            font-weight: bold;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            backdrop-filter: blur(5px);
+        }
+
+        .logo {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.8rem;
+            color: var(--dark-pink);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links li a {
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            color: var(--primary-pink);
+        }
+
+        /* --- HERO SECTION (PARALLAX) --- */
+        .hero {
+            height: 100vh;
+            /* Parallax Effect Requirements */
+            background-image: linear-gradient(rgba(255, 228, 225, 0.7), rgba(255, 228, 225, 0.7)), url('https://images.unsplash.com/photo-1514068574085-f672f281e053?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            color: var(--dark-pink);
+            text-shadow: 2px 2px 0px var(--white);
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px 20px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+
+        .cta-btn {
+            background-color: var(--dark-pink);
+            color: var(--white);
+            padding: 15px 35px;
+            font-size: 1.2rem;
+            font-family: 'Fredoka', sans-serif;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 107, 129, 0.4);
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.2s;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.1);
+            background-color: #ff526b;
+            color: white;
+        }
+
+        /* --- SUBJECTS SECTION --- */
+        .subjects {
+            padding: 80px 20px;
+            text-align: center;
+            background-color: var(--white);
+        }
+
+        .subjects h2 {
+            font-size: 2.8rem;
+            margin-bottom: 40px;
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background-color: var(--light-pink);
+            padding: 30px;
+            border-radius: 30px;
+            width: 280px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 182, 193, 0.6);
+        }
+
+        .card .icon {
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        /* --- ABOUT/FUN SECTION --- */
+        .fun-section {
+            padding: 80px 20px;
+            text-align: center;
+            background-color: var(--light-pink);
+        }
+
+        .fun-section p {
+            max-width: 600px;
+            margin: 20px auto;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--primary-pink);
+            text-align: center;
+            padding: 20px;
+            color: var(--white);
+            font-weight: bold;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .nav-links { display: none; /* In a full build, add a hamburger menu */ }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">🖍️ Little Learners</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#subjects">What We Learn</a></li>
+            <li><a href="#about">About Us</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero">
+        <h1>Learning is Magic! ✨</h1>
+        <p>Fun, friendly, and engaging tutoring for Kindergarten, 1st, and 2nd Graders.</p>
+        <button class="cta-btn" onclick="sayHello()">Start the Fun!</button>
+    </section>
+
+    <section id="subjects" class="subjects">
+        <h2>Our Magical Subjects</h2>
+        <div class="card-container">
+            
+            <div class="card">
+                <div class="icon">📚</div>
+                <h3>Reading</h3>
+                <p>We make phonics and sight words super fun! Dive into silly stories and learn to love reading.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🧮</div>
+                <h3>Math</h3>
+                <p>Counting, adding, and shapes! We use toys and games to make numbers easy to understand.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🎨</div>
+                <h3>Creativity</h3>
+                <p>Handwriting and creative drawing to help little hands build strong motor skills.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="about" class="fun-section">
+        <h2>Why Choose Us? 🧸</h2>
+        <p>We know that little minds learn best when they are having fun! Our tutors use games, colorful visuals, and lots of encouragement to help your child build confidence in their early school years.</p>
+        <button class="cta-btn" onclick="scrollToTop()">Back to Top ⬆️</button>
+    </section>
+
+    <footer>
+        <p>© 2026 Little Learners Tutoring. Made with 💖 for growing minds.</p>
+    </footer>
+
+    <script>
+        // A cute interactive greeting for the main button
+        function sayHello() {
+            // Using a simple alert for demonstration, but can be swapped for a cute modal popup
+            alert("Yay! We are so excited to learn with you! 🎈 Drop us a message to schedule your first fun session.");
+        }
+
+        // Smooth scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</body>
+</html>

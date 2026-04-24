@@ -8,7 +8,7 @@
     <style>
         /* --- CSS VARIABLES FOR THEME --- */
         :root {
-            --primary-pink: #ffb6c1;
+            --primary-pink: #ffb6c1; /* This is the light pink used for the trail */
             --light-pink: #ffe4e1;
             --dark-pink: #ff6b81;
             --text-main: #5a4b4d;
@@ -29,6 +29,7 @@
             background-color: var(--light-pink);
             color: var(--text-main);
             overflow-x: hidden;
+            position: relative; /* Helps contain absolute elements if needed */
         }
 
         h1, h2, h3 {
@@ -40,6 +41,31 @@
             text-decoration: none;
             color: var(--dark-pink);
             font-weight: bold;
+        }
+
+        /* --- CURSOR TRAIL --- */
+        .cursor-trail {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: var(--primary-pink);
+            border-radius: 50%;
+            pointer-events: none; /* Ensures the dots don't block you from clicking things */
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            animation: fadePop 0.6s ease-out forwards;
+            box-shadow: 0 0 8px rgba(255, 182, 193, 0.8);
+        }
+
+        @keyframes fadePop {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(0.2);
+                opacity: 0;
+            }
         }
 
         /* --- NAVIGATION --- */
@@ -80,7 +106,6 @@
         /* --- HERO SECTION (PARALLAX) --- */
         .hero {
             height: 100vh;
-            /* Parallax Effect Requirements */
             background-image: linear-gradient(rgba(255, 228, 225, 0.7), rgba(255, 228, 225, 0.7)), url('https://images.unsplash.com/photo-1514068574085-f672f281e053?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
             background-attachment: fixed;
             background-position: center;
@@ -210,7 +235,7 @@
         /* --- RESPONSIVE DESIGN --- */
         @media (max-width: 768px) {
             .hero h1 { font-size: 3rem; }
-            .nav-links { display: none; /* In a full build, add a hamburger menu */ }
+            .nav-links { display: none; }
         }
     </style>
 </head>
@@ -267,19 +292,36 @@
     </footer>
 
     <script>
-        // A cute interactive greeting for the main button
+        // --- BUTTON INTERACTIONS ---
         function sayHello() {
-            // Using a simple alert for demonstration, but can be swapped for a cute modal popup
             alert("Yay! We are so excited to learn with you! 🎈 Drop us a message to schedule your first fun session.");
         }
 
-        // Smooth scroll to top function
         function scrollToTop() {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
         }
+
+        // --- CURSOR TRAIL EFFECT ---
+        document.addEventListener('mousemove', function(e) {
+            // Create a div for the dot
+            const trail = document.createElement('div');
+            trail.className = 'cursor-trail';
+            
+            // Position the dot exactly where the mouse is
+            trail.style.left = e.pageX + 'px';
+            trail.style.top = e.pageY + 'px';
+            
+            // Add it to the page
+            document.body.appendChild(trail);
+            
+            // Remove the dot after the CSS animation finishes (600ms)
+            setTimeout(() => {
+                trail.remove();
+            }, 600);
+        });
     </script>
 </body>
 </html>

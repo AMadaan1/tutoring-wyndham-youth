@@ -8,7 +8,7 @@
     <style>
         /* --- CSS VARIABLES FOR THEME --- */
         :root {
-            --primary-pink: #ffb6c1;
+            --primary-pink: #ffb6c1; 
             --light-pink: #ffe4e1;
             --dark-pink: #ff6b81;
             --text-main: #5a4b4d;
@@ -29,7 +29,7 @@
             background-color: var(--light-pink);
             color: var(--text-main);
             overflow-x: hidden;
-            position: relative;
+            position: relative; 
         }
 
         h1, h2, h3 {
@@ -50,7 +50,7 @@
             height: 15px;
             background-color: var(--primary-pink);
             border-radius: 50%;
-            pointer-events: none;
+            pointer-events: none; 
             z-index: 9999;
             transform: translate(-50%, -50%);
             animation: fadePop 0.6s ease-out forwards;
@@ -58,8 +58,14 @@
         }
 
         @keyframes fadePop {
-            0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-            100% { transform: translate(-50%, -50%) scale(0.2); opacity: 0; }
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(0.2);
+                opacity: 0;
+            }
         }
 
         /* --- NAVIGATION --- */
@@ -130,9 +136,8 @@
             margin-bottom: 30px;
         }
 
-        /* --- BUTTONS --- */
         .cta-btn {
-            display: inline-block;
+            display: inline-block; /* Added so the <a> tag respects padding */
             background-color: var(--dark-pink);
             color: var(--white);
             padding: 15px 35px;
@@ -143,6 +148,7 @@
             cursor: pointer;
             box-shadow: 0 5px 15px rgba(255, 107, 129, 0.4);
             transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.2s;
+            text-decoration: none; /* Ensures the link has no underline */
         }
 
         .cta-btn:hover {
@@ -212,44 +218,6 @@
             line-height: 1.6;
         }
 
-        /* --- REGISTRATION SECTION --- */
-        .register-section {
-            padding: 80px 20px;
-            text-align: center;
-            background-color: var(--white);
-        }
-
-        .register-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-        }
-
-        .register-form {
-            max-width: 500px;
-            margin: 0 auto;
-            background-color: var(--light-pink);
-            padding: 40px;
-            border-radius: 30px;
-            box-shadow: var(--card-shadow);
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .register-form input, .register-form select {
-            padding: 15px;
-            border: 2px solid transparent;
-            border-radius: 15px;
-            font-family: 'Nunito', sans-serif;
-            font-size: 1.1rem;
-            outline: none;
-            transition: border-color 0.3s;
-        }
-
-        .register-form input:focus, .register-form select:focus {
-            border-color: var(--dark-pink);
-        }
-
         /* --- FOOTER --- */
         footer {
             background-color: var(--primary-pink);
@@ -281,14 +249,16 @@
             <li><a href="#home">Home</a></li>
             <li><a href="#subjects">What We Learn</a></li>
             <li><a href="#about">About Us</a></li>
-            <li><a href="#register">Register</a></li>
         </ul>
     </nav>
 
     <section id="home" class="hero">
         <h1>Learning is Magic! ✨</h1>
         <p>Fun, friendly, and engaging tutoring for Kindergarten, 1st, and 2nd Graders.</p>
-        <a href="#register" class="cta-btn">Register and Start the Fun!</a>
+        
+        <a href="YOUR_GOOGLE_FORM_LINK_HERE" target="_blank" rel="noopener noreferrer" class="cta-btn">
+            Register and Start the Fun!
+        </a>
     </section>
 
     <section id="subjects" class="subjects">
@@ -319,38 +289,15 @@
     <section id="about" class="fun-section">
         <h2>Why Choose Us? 🧸</h2>
         <p>We know that little minds learn best when they are having fun! Our tutors use games, colorful visuals, and lots of encouragement to help your child build confidence in their early school years.</p>
-    </section>
-
-    <section id="register" class="register-section">
-        <h2>Join the Magic! 📝</h2>
-        <form class="register-form" onsubmit="submitForm(event)">
-            <input type="text" placeholder="Parent's Name" required>
-            <input type="text" placeholder="Child's Name" required>
-            <select required>
-                <option value="" disabled selected>Child's Grade</option>
-                <option value="k">Kindergarten</option>
-                <option value="1">1st Grade</option>
-                <option value="2">2nd Grade</option>
-            </select>
-            <input type="email" placeholder="Email Address" required>
-            <button type="submit" class="cta-btn" style="width: 100%;">Send Magic Pigeon! 🕊️</button>
-        </form>
+        <button class="cta-btn" onclick="scrollToTop()">Back to Top ⬆️</button>
     </section>
 
     <footer>
         <p>© 2026 Little Learners Tutoring. Made with 💖 for growing minds.</p>
-        <button onclick="scrollToTop()" style="margin-top: 10px; background: none; border: none; color: white; cursor: pointer; font-family: 'Fredoka'; font-size: 1rem;">Back to Top ⬆️</button>
     </footer>
 
     <script>
-        // --- FORM SUBMISSION ---
-        function submitForm(event) {
-            event.preventDefault(); // Prevents the page from refreshing
-            alert("Yay! Your registration has been sent. We'll be in touch soon! 🎈");
-            event.target.reset(); // Clears the form
-        }
-
-        // --- SCROLL TO TOP ---
+        // --- BUTTON INTERACTIONS ---
         function scrollToTop() {
             window.scrollTo({
                 top: 0,
@@ -360,14 +307,18 @@
 
         // --- CURSOR TRAIL EFFECT ---
         document.addEventListener('mousemove', function(e) {
+            // Create a div for the dot
             const trail = document.createElement('div');
             trail.className = 'cursor-trail';
             
+            // Position the dot exactly where the mouse is
             trail.style.left = e.pageX + 'px';
             trail.style.top = e.pageY + 'px';
             
+            // Add it to the page
             document.body.appendChild(trail);
             
+            // Remove the dot after the CSS animation finishes (600ms)
             setTimeout(() => {
                 trail.remove();
             }, 600);
